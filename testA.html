@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let users = [
+    {"name": "张小花", "email": "zhang@qq.com"},
+    {"name": "body", "email": "body@qq.com"},
+    {"name": "李小璐", "email": "li@qq.com"}
+];
+let newEmail = users.map(function (item) {
+    return item.name;
+});
+console.log(newEmail);
+
+let routes= [
+    "ActivityEdit",
+    "TESTER123",
+    "Product",
+    "Activity",
+    "Tax",
+    "String",
+    "dwede",
+    "csna",
+    "Attr",
+    "TESTERNEW2",
+    "jiji",
+    "TRFRR1",
+    "Permission",
+    "Spu",
+    "fewfe",
+    "wefwe",
+    "Order",
+    "12",
+    "ab",
+    "tTT禾主",
+    "ActivityRule",
+    "测温的",
+    "是",
+    "Role",
+    "RoleAuth",
+    "test4-1",
+    "俺公司",
+    "0",
+    "1",
+    "123",
+    "Yyy2",
+    "Refund",
+    "4",
+    "person",
+    "Wwedw",
+    "废物费",
+    "Salary",
+    "User",
+    "Category",
+    "Discount",
+    "string",
+    "CouponRule",
+    "CouponAdd",
+    "Trademark",
+    "ActivityAdd",
+    "我的前端",
+    "CouponEdit",
+    "OrderShow",
+    "fewfew",
+    "woshilalala",
+    "dasdasd",
+    "qeq",
+    "UserList",
+    "TYYYY",
+    "ClientUser",
+    "gremormre",
+    "Coupon",
+    "34564321",
+    "参数",
+    "Finance",
+    "dwqdw",
+    "hhh",
+    "Acl",
+    "TESTERNEW",
+    "OrderList",
+    "Sku",
+    "分为"
+]
+const asyncRoutes = [
+  // 权限管理
+  {
+    name: 'Acl',
+    path: '/acl',
+    component: Layout,
+    // redirect: '/dashboard',
+    redirect: '/acl/permission',
+    meta: { title: '权限管理', icon: 'el-icon-goods' },
+    children: [
+      {
+        name: 'User',
+        path: 'user',
+        component: () => import('@/views/acl/user/list.vue'),
+        meta: { title: '用户管理' }
+      },
+      {
+        name: 'Role',
+        path: 'role',
+        component: () => import('@/views/acl/role/list.vue'),
+        meta: { title: '角色管理' }
+      }, {
+        name: 'Permission',
+        path: 'permission',
+        component: () => import('@/views/acl/permission/list.vue'),
+        meta: { title: '权限管理' }
+      }]
+  },
+
+  // 商品管理
+  {
+    name: 'Product',
+    path: '/product',
+    component: Layout,
+    redirect: '/product/trademark',
+    meta: { title: '商品管理', icon: 'el-icon-goods' },
+    children: [
+      {
+        path: 'trademark',
+        name: 'Trademark',
+        component: () => import('@/views/product/TradeMark'),
+        // 这个tittle是侧边栏和面包屑的标题
+        meta: { title: '品牌管理' }
+      },
+      {
+        path: 'attr',
+        name: 'Attr',
+        component: () => import('@/views/product/Attr'),
+        // 这个tittle是侧边栏和面包屑的标题
+        meta: { title: '平台属性管理' }
+      },
+      {
+        path: 'spu',
+        name: 'Spu',
+        component: () => import('@/views/product/Spu'),
+        // 这个tittle是侧边栏和面包屑的标题
+        meta: { title: 'Spu管理' }
+      },
+      {
+        path: 'sku',
+        name: 'Sku',
+        component: () => import('@/views/product/Sku'),
+        // 这个tittle是侧边栏和面包屑的标题
+        meta: { title: 'Sku管理' }
+      }
+
+    ]
+  }
+]
+// 1
+  const computedAsyncRoutes = (asyncRoutes, dataRoutes) => {
+  return asyncRoutes.filter(item => {
+    if (dataRoutes.indexOf(item.name) !== -1) {
+      // 递归,因为可能还有3,4,5,6级路由
+      if (item.children && item.children.length) {
+        item.children = computedAsyncRoutes(item.children, dataRoutes)
+      }
+      return true
+    }
+  })
+}
+let result = computedAsyncRoutes(asyncRoutes,routes)
+console.log(result);
+
+</script>
+</html>

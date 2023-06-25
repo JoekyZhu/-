@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+        }
+        .aa {
+            /* background: url(~@/assets/1.png); */
+            background: url(src/assets/1.png);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="aa">林中鸟</div>
+    </div>
+</body>
+<script>
+    let a = {
+        name:'xx',
+        phone:112
+    }
+    let b = Object.assign({},a)
+    a.name = 'bb'
+    // 深拷贝a.name=bb, b.name =xx
+    console.log('a',a,'b',b)
+    let c = {
+        name:'xx',
+        phone:112,
+        arr:{
+            arr1:2,
+            arr2:2
+        }
+    }
+    let d = Object.assign({},c)
+   d.name = 'bb'
+   d.arr.arr2 = 888
+    // 深拷贝a.name=bb, b.name =xx
+    console.log('c',c,'d',d)
+</script>
+</html>
